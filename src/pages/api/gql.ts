@@ -3,6 +3,7 @@ import { ApolloServerPlugin } from "apollo-server-plugin-base";
 import { RequestHandler } from "micro";
 import Cors from "micro-cors";
 import { NextApiHandler } from "next";
+import { resolvers } from "~/resolvers";
 import { typeDefs } from "~/typeDefs";
 
 const loggerPlugin: ApolloServerPlugin = {
@@ -24,22 +25,7 @@ const loggerPlugin: ApolloServerPlugin = {
 
 const apolloServer = new ApolloServer({
     typeDefs,
-    resolvers: {
-        Query: {
-            examplePost() {
-                return null;
-            },
-            exampleAuthor() {
-                return null;
-            },
-            examplePosts() {
-                return [];
-            },
-            exampleAuthors() {
-                return [];
-            },
-        },
-    },
+    resolvers,
     plugins: [loggerPlugin],
 });
 

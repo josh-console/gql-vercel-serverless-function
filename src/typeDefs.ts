@@ -2,20 +2,20 @@ import { gql } from "apollo-server-micro";
 
 export const typeDefs = gql`
     type Query {
-        examplePost(id: String!): ExamplePost
-        exampleAuthor(id: String!): ExampleAuthor
+        examplePost(title: String!): ExamplePost
+        exampleAuthor(name: String!): ExampleAuthor
         examplePosts: [ExamplePost!]!
         exampleAuthors: [ExampleAuthor!]!
     }
 
     type Mutation {
-        createExamplePost(data: CreateExamplePostInput!): ExamplePost
-        createExampleAuthor(data: CreateExampleAuthorInput!): ExampleAuthor
+        createExamplePost(data: CreateExamplePostInput!): ID
+        createExampleAuthor(data: CreateExampleAuthorInput!): ID
         deleteExamplePost(id: String!): ExamplePost
     }
 
     type ExamplePost {
-        id: ID!
+        _id: ID!
         title: String!
         body: String!
         avatar: String
@@ -30,7 +30,7 @@ export const typeDefs = gql`
     }
 
     type ExampleAuthor {
-        id: ID!
+        _id: ID!
         name: String!
         bio: String!
         posts: [ExamplePost!]

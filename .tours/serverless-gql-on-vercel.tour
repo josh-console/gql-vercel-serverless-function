@@ -1,6 +1,6 @@
 {
   "$schema": "https://aka.ms/codetour-schema",
-  "title": "Serverless GQL on Vercel",
+  "title": "Next.js & Running Locally",
   "steps": [
     {
       "file": "README.md",
@@ -43,7 +43,19 @@
       "description": "For convenience, an [Apollo Server Plugin](https://www.apollographql.com/docs/apollo-server/integrations/plugins/) is used for logging.  This is unrelated to the serverless function; it's a pretty cool tool for all Apollo servers.",
       "line": 8,
       "title": "Apollo Server Plugin - Logging"
+    },
+    {
+      "file": "src/pages/api/gql.ts",
+      "description": "Notice the Apollo server is instantiated and started *outside* the handler.  This runs on cold starts and persists between individual invocations of a \"warm\" function instance.",
+      "line": 46,
+      "title": "Apollo Server Instance"
+    },
+    {
+      "file": "src/pages/api/gql.ts",
+      "description": "We await an Apollo server instance, which instantiates a server on cold start and immediately resolves to that instance on future invocations.  Conversely, the handler invokes the Apollo server handler each time.",
+      "line": 54
     }
   ],
-  "isPrimary": true
+  "isPrimary": true,
+  "nextTour": "Vercel Serverless Function"
 }

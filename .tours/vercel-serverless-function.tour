@@ -1,0 +1,17 @@
+{
+  "$schema": "https://aka.ms/codetour-schema",
+  "title": "Vercel Serverless Function",
+  "steps": [
+    {
+      "file": "package.json",
+      "description": "Vercel provides environment variables via [project settings](https://vercel.com/josh-console/gql-vercel-serverless-function/settings/environment-variables).  These variables are encrypted and therefore serve as secrets as well.\n\nTo pull environment variables for local use, first initialize the [Vercel CLI](https://vercel.com/docs/cli):\n>> npx vercel\n\nThen, run the config script:\n>> npx vercel env pull",
+      "line": 10,
+      "title": "Vercel CLI"
+    },
+    {
+      "title": ".env",
+      "description": "In this case, an environment variable for a MongoDB Atlas database has been added to the [Vercel project settings](https://vercel.com/josh-console/gql-vercel-serverless-function/settings/environment-variables).",
+      "file": ".env"
+    }
+  ]
+}
