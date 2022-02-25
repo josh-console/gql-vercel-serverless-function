@@ -12,6 +12,26 @@
       "title": ".env",
       "description": "In this case, an environment variable for a MongoDB Atlas database has been added to the [Vercel project settings](https://vercel.com/josh-console/gql-vercel-serverless-function/settings/environment-variables).",
       "file": ".env"
+    },
+    {
+      "title": "MongoDB Client",
+      "description": "In this file, we initialize a client connection to that MongoDB Atlas project. This module is structured so that each instance of the serverless function only establishes one MongoDB client with a limited number of connections in its pool, no matter how frequently the function is invoked.  The serverless function may scale *horizontally* - and we need to limit the maximum number of concurrent function instances if that causes an excess number of connections - but executions of a single instance of the function shouldn't be cause for concern.  Of course, there is room to optimize this depending on usage.\n\nAlso note the \"global\" MongoDB client in development mode.  This ensures HMR doesn't create excessive connections during hot reloads.",
+      "file": "src/db/client.ts",
+      "line": 3
+    },
+    {
+      "file": "src/resolvers.ts",
+      "description": "Now, the client promise is imported from the previous module wherever it's needed.  Much like the Apollo Server instance, it's resolved instantly in most cases except cold starts of the serverless function.   Other than that, it's pretty much a normal MongoDB instance.",
+      "line": 6,
+      "title": "Using MongoDB"
+    },
+    {
+      "directory": ".vercel",
+      "description": "That's the code in a nutshell. Deployment could not be simpler: this hidden directory indicates we've connected this repo to a Vercel project.  Pushing our updates to GitHub automatically deploys preview or production [environments on Vercel](https://vercel.com/josh-console/gql-vercel-serverless-function).\n\nOne small quirk: logs are only retained while the \"Functions\" Vercel page is opened.  For long term retention they must be drained to an external resource. No big deal, just something to be aware of."
+    },
+    {
+      "title": "Conclusion & Demo",
+      "description": "That's about it!  Try this example out at [https://gql-vercel-serverless-function.vercel.app/api/gql](https://gql-vercel-serverless-function.vercel.app/api/gql). Cold starts after deployment can be expected to take a second or two; warm invocations can be expected to take 50-100ms, give or take.  There are more optimizations to make and nothing is preventing the usage of the Prisma MongoDB connector, but it's a start. "
     }
   ]
 }
