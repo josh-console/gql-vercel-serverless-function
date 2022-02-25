@@ -1,0 +1,49 @@
+{
+  "$schema": "https://aka.ms/codetour-schema",
+  "title": "Serverless GQL on Vercel",
+  "steps": [
+    {
+      "file": "README.md",
+      "description": "This repo is an example of a [Vercel Serverless Function](https://vercel.com/docs/concepts/functions/serverless-functions). It's mostly no different than any other Next.js app.  It's even initialized by `create-next-app`!  As always, we can start with:\n>> npm run dev",
+      "line": 1,
+      "title": "Intro"
+    },
+    {
+      "file": "src/typedefs.ts",
+      "description": "`apollo-server-micro` is an Apollo server for the serverless environment.  Mostly, it's the same as the \"vanilla\" Apollo server, exporting the usual modules like `gql`.",
+      "line": 1,
+      "title": "Apollo Server"
+    },
+    {
+      "file": "src/pages/api/gql.ts",
+      "description": "Still looks like the usual Apollo server!",
+      "line": 25,
+      "title": "Apollo Server"
+    },
+    {
+      "file": "src/pages/api/gql.ts",
+      "description": "Here's the main difference: instead of a \"listener\", this server uses a handler method.  This corresponds to the Next.js serverless function.",
+      "line": 55,
+      "title": "Serverless Handler"
+    },
+    {
+      "file": "src/pages/api/gql.ts",
+      "description": "Since the explorer runs on [Apollo Studio](https://studio.apollographql.com/sandbox/explorer), we need to enable CORS to send requests to our server.  This helper function just updates the response and its headers.",
+      "line": 57,
+      "title": "CORS"
+    },
+    {
+      "file": "src/pages/api/gql.ts",
+      "description": "We need to disable the Vercel bodyParser to properly use the request body.",
+      "line": 61,
+      "title": "Disable bodyParser"
+    },
+    {
+      "file": "src/pages/api/gql.ts",
+      "description": "For convenience, an [Apollo Server Plugin](https://www.apollographql.com/docs/apollo-server/integrations/plugins/) is used for logging.  This is unrelated to the serverless function; it's a pretty cool tool for all Apollo servers.",
+      "line": 8,
+      "title": "Apollo Server Plugin - Logging"
+    }
+  ],
+  "isPrimary": true
+}
