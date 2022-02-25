@@ -23,19 +23,19 @@
     {
       "file": "src/pages/api/gql.ts",
       "description": "Here's the main difference: instead of a \"listener\", this server uses a handler method.  This corresponds to the Next.js serverless function.",
-      "line": 55,
+      "line": 41,
       "title": "Serverless Handler"
     },
     {
       "file": "src/pages/api/gql.ts",
       "description": "Since the explorer runs on [Apollo Studio](https://studio.apollographql.com/sandbox/explorer), we need to enable CORS to send requests to our server.  This helper function just updates the response and its headers.",
-      "line": 57,
+      "line": 43,
       "title": "CORS"
     },
     {
       "file": "src/pages/api/gql.ts",
       "description": "We need to disable the Vercel bodyParser to properly use the request body.",
-      "line": 61,
+      "line": 47,
       "title": "Disable bodyParser"
     },
     {
@@ -47,13 +47,13 @@
     {
       "file": "src/pages/api/gql.ts",
       "description": "Notice the Apollo server is instantiated and started *outside* the handler.  This runs on cold starts and persists between individual invocations of a \"warm\" function instance.",
-      "line": 46,
+      "line": 26,
       "title": "Apollo Server Instance"
     },
     {
       "file": "src/pages/api/gql.ts",
       "description": "We await an Apollo server instance, which instantiates a server on cold start and immediately resolves to that instance on future invocations.  Conversely, the handler invokes the Apollo server handler each time.",
-      "line": 54
+      "line": 40
     }
   ],
   "isPrimary": true,
