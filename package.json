@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "config": "vercel env pull"
+    "config": "vercel env pull",
+    "generate": "graphql-codegen"
   },
   "dependencies": {
     "apollo-server-micro": "^3.6.3",
@@ -21,6 +22,10 @@
     "react-dom": "17.0.2"
   },
   "devDependencies": {
+    "@graphql-codegen/cli": "^2.3.0",
+    "@graphql-codegen/schema-ast": "^2.4.0",
+    "@graphql-codegen/typescript": "^2.4.1",
+    "@graphql-codegen/typescript-resolvers": "^2.4.2",
     "@types/micro-cors": "^0.1.2",
     "@types/node": "17.0.21",
     "@types/react": "17.0.39",

@@ -3,8 +3,8 @@ import { ApolloServerPlugin } from "apollo-server-plugin-base";
 import { RequestHandler } from "micro";
 import Cors from "micro-cors";
 import { NextApiHandler } from "next";
-import { resolvers } from "~/resolvers";
-import { typeDefs } from "~/typeDefs";
+import { dbConnection } from "~/db";
+import { createContext, resolvers, typeDefs } from "~/graphql";
 
 const loggerPlugin: ApolloServerPlugin = {
     async requestDidStart(ctx) {
@@ -24,6 +24,10 @@ const loggerPlugin: ApolloServerPlugin = {
 };
 
 const apolloServer = new ApolloServer({
+    context: async () => {
+        const db = await dbConnection();
+        return createContext(db);
+    },
     typeDefs,
     resolvers,
     plugins: [loggerPlugin],
