@@ -1,8 +1,6 @@
-import { clientPromise } from "./client";
+import { client } from "./client";
 
-const DB = "vercel-serverless-function";
-
-export const dbConnection = async () => {
-    const client = await clientPromise;
-    return client.db(DB);
-};
+export const dbConnection = (async () => {
+    await client.$connect();
+    return client;
+})();

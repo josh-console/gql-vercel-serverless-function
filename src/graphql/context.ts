@@ -1,10 +1,10 @@
-import { Db } from "mongodb";
+import { PrismaClient } from "@prisma/client";
 
 export type Context = {
-    db: Db;
+    db: PrismaClient;
 };
 
-export const createContext = async (db: Db): Promise<Context> => {
+export const createContext = async (db: PrismaClient): Promise<Context> => {
     return {
         db,
     };

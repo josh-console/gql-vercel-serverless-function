@@ -1,26 +1,24 @@
-import { MongoClient } from "mongodb";
+import { PrismaClient } from "@prisma/client";
 
 if (!process.env.MONGO_DB) {
     throw new Error("Missing MongoDB connection urls.");
 }
 
-let mongoClient: MongoClient;
-let connection: Promise<MongoClient>;
+let prismaClient: PrismaClient;
 
 if (process.env.NODE_ENV === "development") {
-    if (!global._devMongoClient) {
-        console.log("Establishing MongoDB connection (development)");
-        mongoClient = new MongoClient(process.env.MONGO_DB);
-        global._devMongoClient = mongoClient.connect();
+    if (!global._devPrismaClient) {
+        console.log("Establishing DEVELOPMENT Prisma client.");
+
+        global._devPrismaClient = new PrismaClient();
     }
-    connection = global._devMongoClient;
+    prismaClient = global._devPrismaClient;
 } else {
-    console.log("Establishing MongoDB connection (production)");
-    mongoClient = new MongoClient(process.env.MONGO_DB);
-    connection = mongoClient.connect();
+    console.log("Establishing PRODUCTION Prisma client.");
+    prismaClient = new PrismaClient();
 }
 
 /**
  * Promise that resolves to connected MongoDB client.
  */
-export const clientPromise = connection;
+export const client = prismaClient;

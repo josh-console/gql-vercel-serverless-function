@@ -25,7 +25,7 @@ const loggerPlugin: ApolloServerPlugin = {
 
 const apolloServer = new ApolloServer({
     context: async () => {
-        const db = await dbConnection();
+        const db = await dbConnection;
         return createContext(db);
     },
     typeDefs,

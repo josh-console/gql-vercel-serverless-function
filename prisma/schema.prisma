@@ -1,0 +1,22 @@
+generator client {
+    provider        = "prisma-client-js"
+    previewFeatures = ["mongoDb"]
+}
+
+datasource db {
+    provider = "mongodb"
+    url      = env("MONGO_DB")
+}
+
+model Game {
+    id String @id @default(auto()) @map("_id") @db.ObjectId
+
+    @@map("game")
+}
+
+model Account {
+    id       String @id @default(auto()) @map("_id") @db.ObjectId
+    username String @unique
+
+    @@map("account")
+}

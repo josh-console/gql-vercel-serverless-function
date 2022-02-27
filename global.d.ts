@@ -1,8 +1,8 @@
-import { MongoClient } from "mongodb";
+import { PrismaClient } from "@prisma/client";
 
 declare global {
     /**
-     * Global MongoDB client for development mode to avoid excess HMR connections.
+     * Global Prisma client for development mode to avoid excess HMR connections.
      */
-    var _devMongoClient: Promise<MongoClient> | undefined;
+    var _devPrismaClient: PrismaClient | undefined;
 }
