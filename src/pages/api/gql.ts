@@ -7,7 +7,7 @@ import { dbConnection } from "~/db";
 import { createContext, resolvers, typeDefs } from "~/graphql";
 
 const loggerPlugin: ApolloServerPlugin = {
-    async requestDidStart(ctx) {
+    async requestDidStart() {
         return {
             async didResolveOperation(ctx) {
                 console.log(
@@ -15,6 +15,9 @@ const loggerPlugin: ApolloServerPlugin = {
                         ctx.operation.name?.value || "Anonymous"
                     })`,
                 );
+            },
+            async didEncounterErrors(ctx) {
+                console.log(ctx.errors);
             },
         };
     },

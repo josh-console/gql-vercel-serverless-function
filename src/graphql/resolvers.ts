@@ -31,5 +31,23 @@ export const resolvers: Resolvers = {
             });
             return account;
         },
+        async createGame(_, __, { db }) {
+            const game = await db.game.create({
+                data: {
+                    participants: {
+                        // create: [{ username: "testing user" }],
+                        connect: [{ id: "621af14e92c81d9fb97ee684" }],
+                    },
+                },
+                select: {
+                    id: true,
+                    participants: true,
+                },
+            });
+            return {
+                ...game,
+                players: game.participants,
+            };
+        },
     },
 };

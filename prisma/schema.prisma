@@ -1,22 +1,26 @@
 generator client {
-    provider        = "prisma-client-js"
-    previewFeatures = ["mongoDb"]
+  provider        = "prisma-client-js"
+  previewFeatures = ["mongoDb"]
 }
 
 datasource db {
-    provider = "mongodb"
-    url      = env("MONGO_DB")
+  provider = "mongodb"
+  url      = env("MONGO_DB")
 }
 
 model Game {
-    id String @id @default(auto()) @map("_id") @db.ObjectId
+  id             String    @id @default(auto()) @map("_id") @db.ObjectId
+  participantIds String[]  @db.ObjectId
+  participants   Account[] @relation(fields: [participantIds], references: [id])
 
-    @@map("game")
+  @@map("game")
 }
 
 model Account {
-    id       String @id @default(auto()) @map("_id") @db.ObjectId
-    username String @unique
+  id       String   @id @default(auto()) @map("_id") @db.ObjectId
+  username String   @unique
+  gameIds  String[] @db.ObjectId
+  games    Game[]   @relation(fields: [gameIds], references: [id])
 
-    @@map("account")
+  @@map("account")
 }
